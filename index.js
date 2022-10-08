@@ -1,10 +1,16 @@
 import { Server } from 'node-osc';
+import { Client } from 'node-osc';
+
+const client = new Client('localhost', 3000);
+
 var x,y;
 var port = process.env.PORT||3000;
 var oscServer = new Server(port, process.env.HOST||'localhost', () => {
     console.log('OSC Server is listening on '+`${port}`);
 });
-
+client.send('/3/xy', 200, () => {
+    client.close();
+  });
 // oscServer.on('message', function (msg) {
 //   console.log(`Message: ${msg}`);
 // //   oscServer.close();
