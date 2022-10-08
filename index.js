@@ -6,7 +6,7 @@ const client = new Client(process.env.HOST||'localhost', process.env.PORT||3000)
 var x,y;
 
 var oscServer = new Server(port, process.env.HOST||'localhost', () => {
-    console.log('OSC Server is listening on '+`${port}`);
+    console.log('OSC Server is listening on '+`${port}`+`${process.env.HOST}`);
 });
 client.send('/3/xy', 200, () => {
     client.close();
