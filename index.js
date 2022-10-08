@@ -11,10 +11,10 @@ var oscServer = new Server(port, process.env.HOST||'localhost', () => {
 client.send('/3/xy', 200, () => {
     client.close();
   });
-// oscServer.on('message', function (msg) {
-//   console.log(`Message: ${msg}`);
-// //   oscServer.close();
-// });
+oscServer.on('message', function (msg) {
+  console.log(`Message: ${msg}`);
+//   oscServer.close();
+});
 oscServer.on('message', function(msg) {
     if (msg[0] == '#bundle') {
         for (var i=2; i<msg.length; i++) {
@@ -25,7 +25,7 @@ oscServer.on('message', function(msg) {
     }
 });
 function receiveOsc(address, value) {
-	// console.log("received OSC: " + address + ", " + value);
+	console.log("received OSC: " + address + ", " + value);
 
 	if (address == '/3/xy') {
 		x = value[0];
