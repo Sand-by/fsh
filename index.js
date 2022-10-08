@@ -1,6 +1,6 @@
 import { Server } from 'node-osc';
 var x,y;
-var port = 3333||process.env.PORT;
+var port = process.env.PORT;
 var oscServer = new Server(port, '0.0.0.0', () => {
     console.log('OSC Server is listening on '+`${port}`);
 });
