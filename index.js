@@ -1,20 +1,16 @@
 import { Server } from 'node-osc';
-import { Client } from 'node-osc';
 var port = process.env.PORT||3000;
-const client = new Client(process.env.HOST||'localhost', process.env.PORT||3000);
 
 var x,y;
 
 var oscServer = new Server(port, process.env.HOST||'localhost', () => {
     console.log('OSC Server is listening on '+`${port}`+`${process.env.HOST}`);
 });
-client.send('/3/xy', 200, () => {
-    client.close();
-  });
-oscServer.on('message', function (msg) {
-  console.log(`Message: ${msg}`);
-//   oscServer.close();
-});
+
+// oscServer.on('message', function (msg) {
+//   console.log(`Message: ${msg}`);
+// //   oscServer.close();
+// });
 oscServer.on('message', function(msg) {
     if (msg[0] == '#bundle') {
         for (var i=2; i<msg.length; i++) {
@@ -25,7 +21,7 @@ oscServer.on('message', function(msg) {
     }
 });
 function receiveOsc(address, value) {
-	console.log("received OSC: " + address + ", " + value);
+	// console.log("received OSC: " + address + ", " + value);
 
 	if (address == '/3/xy') {
 		x = value[0];
