@@ -4,7 +4,8 @@ var port = process.env.PORT||3000;
 var x,y;
 
 var oscServer = new Server(port, process.env.HOST||'localhost', () => {
-    console.log('OSC Server is listening on '+`${port}`+`${process.env.HOST}`);
+    console.log('OSC Server is listening on '+`${port}`);
+    console.log("Everething is ready")
 });
 
 // oscServer.on('message', function (msg) {
