@@ -31,5 +31,7 @@ function receiveOsc(address, value) {
 
   if(address == '/3/toggle1'){
     z = value[0];
+    console.log("server down");
+    oscServer.close();
   }
 }
